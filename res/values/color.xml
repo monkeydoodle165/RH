@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="list_item_title">#fff</color>
+    <color name="list_background">#303030</color>
+    <color name="list_background_pressed">#992416</color>
+    <color name="list_divider">#272727</color>
+    <color name="counter_text_bg">#626262</color>
+    <color name="counter_text_color">#c5c4c4</color>
+    <color name="orange">#FBB03B</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <color name="raeburn">#FF009DAD</color>
+    
+    <color name="abuse">#FFFFDD00</color>
+    <color name="addiction">#FFF99D1C</color>
+    <color name="asian">#FFF15A22</color>
+    <color name="children">#FF94070A</color>
+    <color name="community">#FF8A135D</color>
+    <color name="counselling">#FFED037C</color>
+    <color name="crisis">#FFD2232A</color>
+    <color name="disability">#FF662D91</color>
+    <color name="family">#FF004071</color>
+    <color name="glt">#FF0083CA</color>
+    <color name="hardship">#FF00AAAd</color>
+    <color name="health">#FF008060</color>
+    <color name="maori">#FF00A651</color>
+    <color name="mental">#FF8DC63F</color>
+    <color name="older">#FFAFDFE4</color>
+    <color name="pacific">#FF647883</color>
+    <color name="index">#FFFFC222</color>
+    
+    <color name="mChurches">#FFFFDD00</color>
+    <color name="mCommunity">#FFF99D1C</color>
+    <color name="mEducation">#FFF15A22</color>
+    <color name="mEmployment">#FF94070A</color>
+    <color name="mEthnic">#FF8A135D</color>
+    <color name="mGeneral">#FF662D91</color>
+    <color name="mGovernment">#FF0083CA</color>
+    <color name="mHealth">#FF00AAAD</color>
+    <color name="mLanguage">#FF8DC63F</color>
+    <color name="mMedia">#FFAFDFE4</color>
+    
+    
+    <color name="raeburnBack">#33009DAD</color>
+    
+    <color name="abuseBack">#33FFDD00</color>
+    <color name="addictionBack">#33F99D1C</color>
+    <color name="asianBack">#33F15A22</color>
+    <color name="childrenBack">#3394070A</color>
+    <color name="communityBack">#338A135D</color>
+    <color name="counsellingBack">#33ED037C</color>
+    <color name="crisisBack">#33D2232A</color>
+    <color name="disabilityBack">#33662D91</color>
+    <color name="familyBack">#33004071</color>
+    <color name="gltBack">#330083CA</color>
+    <color name="hardshipBack">#3300AAAd</color>
+    <color name="healthBack">#33008060</color>
+    <color name="maoriBack">#3300A651</color>
+    <color name="mentalBack">#338DC63F</color>
+    <color name="olderBack">#33AFDFE4</color>
+    <color name="pacificBack">#33647883</color>
+    <color name="indexBack">#33FFC222</color>
+    
+    <color name="mChurchesBack">#33FFDD00</color>
+    <color name="mCommunityBack">#33F99D1C</color>
+    <color name="mEducationBack">#33F15A22</color>
+    <color name="mEmploymentBack">#3394070A</color>
+    <color name="mEthnicBack">#338A135D</color>
+    <color name="mGeneralBack">#33662D91</color>
+    <color name="mGovernmentBack">#330083CA</color>
+    <color name="mHealthBack">#3300AAAD</color>
+    <color name="mLanguageBack">#338DC63F</color>
+    <color name="mMediaBack">#33AFDFE4</color>
+    
+</resources>
