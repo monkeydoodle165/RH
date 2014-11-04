@@ -2,9 +2,9 @@ package slidingmenu.model;
 
 public class Category {
 	//private variables
-	int _id;
-	String _name;
-	String _parent;
+	private int _id;
+	private String _name;
+	private String _parent;
 	
 	
 	public Category(String _name, String _parent) {

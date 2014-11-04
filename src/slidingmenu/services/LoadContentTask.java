@@ -39,8 +39,8 @@ public class LoadContentTask extends AsyncTask<String, Void, Void> {
     private Date lastUpdated = null;
     
     //set the URLs to the webservices here
-    private final String categoryURL = "www.jjk.co.nz/categories.php";
-    private final String itemURL = "www.jjk.co.nz/JSON.php";
+    private final String categoryURL = "http://www.jjk.co.nz/categories.php";
+    private final String itemURL = "http://www.jjk.co.nz/JSON.php";
 
     // TextView uiUpdate = (TextView) findViewById(R.id.output);
     // TextView jsonParsed = (TextView) findViewById(R.id.jsonParsed);

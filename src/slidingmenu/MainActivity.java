@@ -99,7 +99,7 @@ public class MainActivity extends Activity {
 
         if (savedInstanceState == null) {
             // on first time display view for first nav item
-            displayView(0);
+   //         displayView(0);
         }
     }
 
@@ -312,7 +312,8 @@ public class MainActivity extends Activity {
        
            FragmentManager fragmentManager = getFragmentManager();
            fragmentManager.beginTransaction()
-                   .replace(R.id.frame_container, fragment).commit();
+                   .replace(R.id.frame_container, fragment).addToBackStack(null).commit();
+          
            
            // update selected item and title, then close the drawer
            mDrawerList.setItemChecked(itemId, true);

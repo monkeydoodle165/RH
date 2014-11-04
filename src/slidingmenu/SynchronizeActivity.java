@@ -42,6 +42,7 @@ public class SynchronizeActivity extends Activity {
     protected void initializeDatabase(Runnable onComplete) {
         //TODO the application should always query the webservice
     	//store the updated date using SharedPreferences
+    	//so query the database every time here
     	//
     	if(db.checkDataBase()) {
             Log.d("Reading: ", "Reading all info..");

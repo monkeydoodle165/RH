@@ -11,6 +11,7 @@ import com.example.rh.R;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -88,6 +89,7 @@ public class DatabaseDetailFragment extends Fragment {
 //			txt5.setText(detailInfo.getBulletPoints()[0] + detailInfo.getBulletPoints()[1] + detailInfo.getBulletPoints()[2]); 
         return rootView;
     }
+   
 	
 	public DatabaseDetailFragment(){
 		

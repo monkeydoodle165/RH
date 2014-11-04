@@ -5,14 +5,11 @@
     android:layout_height="match_parent">
     
     <!-- Framelayout to display Fragments -->
-    <ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">>
     <RelativeLayout
         android:id="@+id/frame_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFFFFFFF"
+        android:layout_height="wrap_content"
+        android:background="@color/raeburnBack"
         android:fillViewport="true" >
 
         <ImageView
@@ -29,10 +26,11 @@
 	        android:layout_height="wrap_content"
 	        android:layout_below="@id/imageView2"
 	        android:paddingTop="16dp"
+	        android:paddingLeft="10dp"
+	        android:paddingRight="10dp"
 	        android:textSize="18sp"
 	    	android:text="@string/about" />
     </RelativeLayout>
-    </ScrollView>
     
     <!-- Listview to display slider menu -->
     <ListView
@@ -41,8 +39,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:choiceMode="singleChoice"
-        android:divider="#aaeeeeee"
-        android:dividerHeight="0.25dp"       
+        android:divider="#FFFFFFFF"
+        android:dividerHeight="4dp"       
         android:listSelector="@drawable/list_selector"
         android:background="#cceeeeee"/>
     
