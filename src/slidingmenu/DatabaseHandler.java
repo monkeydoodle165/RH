@@ -14,7 +14,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHandler extends SQLiteOpenHelper {
 	// All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
 
     // Database Name
     private static final String DATABASE_NAME = "infoManager";
@@ -151,6 +151,41 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // return contact list
         return infoList;
     }
+    
+    	 public List<Info> getItemByNameSearch(String input) {
+    	        List<Info> infoList = new ArrayList<Info>();
+    	        // Select All Query
+    	      //  String selectQuery = ("SELECT _id, firstName, lastName, title FROM employee WHERE firstName || ' ' || lastName LIKE ?", 
+				//		new String[]{"%" + searchText.getText().toString() + "%"}) ;
+
+    	        SQLiteDatabase db = this.getWritableDatabase();
+    	        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_INFO + " WHERE " + ITEM_TITLE + " LIKE ?", 
+						new String[]{"%" + input + "%"});
+
+    	        // looping through all rows and adding to list
+    	        if (cursor.moveToFirst()) {
+    	            do {
+    	                Info info = new Info();
+    	                info.setID(Integer.parseInt(cursor.getString(0)));
+    	                info.setCatid(Integer.parseInt(cursor.getString(1)));
+    	                info.setTitle(cursor.getString(2));
+    	                info.setPhNum(cursor.getString(3));
+    	                info.setEmail(cursor.getString(4));
+    	                info.setAddress(cursor.getString(5));
+    	                info.setPostal(cursor.getString(6));
+    	                info.setFax(cursor.getString(7));
+    	                info.setWeb(cursor.getString(8));
+    	                info.setRegions(cursor.getString(9));
+    	                info.setIntrotext(cursor.getString(10));
+
+    	                // Adding contact to list
+    	                infoList.add(info);
+    	            } while (cursor.moveToNext());
+    	        }
+
+    	        // return contact list
+    	        return infoList;
+    	    }
     
     
  // Getting info by category

@@ -190,12 +190,12 @@ public class LoadContentTask extends AsyncTask<String, Void, Void> {
             for(int i=0; i < lengthJsonArr; i++)
             {
             	//Reset all strings and prepare them to be populated
-            	String phNum = "Phone Number: ";
-                String email = "Email: ";
-                String address = "Address: ";
-                String postal = "Postal Address: ";
-                String fax = "Fax: ";
-                String web = "Website: ";
+            	String phNum = "";
+                String email = "";
+                String address = "";
+                String postal = "";
+                String fax = "";
+                String web = "";
                 String regions = "";
             	
                 /****** Get Object for each JSON node.***********/
@@ -240,29 +240,29 @@ public class LoadContentTask extends AsyncTask<String, Void, Void> {
                     //based on the hpxft_k2_extra_fields table(this needs to be downloaded and stored on the phone)
                     if (id.contains("1"))
                     {
-                    	phNum = phNum + value;
+                    	phNum = value;
                     }
                     if (id.contains("2"))
                     {
-                    	email = email + value;
+                    	email = value;
                     }
                     if (id.contains("3"))
                     {
-                    	address = address + value;
+                    	address = value;
                     }
                     if (id.contains("4"))
                     {
-                    	postal = postal + value;
+                    	postal = value;
                     }
                     if (id.contains("5"))
                     {
-                    	fax = fax + value;
+                    	fax = value;
                     }
                     
                     if (id.contains("6"))
                     {
 	                    String[] tempSplit = value.split(",");
-	                    web = web + Clean(tempSplit[0]);
+	                    web = Clean(tempSplit[0]);
 	                    //Html.fromHtml("<a href=\'" + Clean(tempSplit[0])+"'>" + Clean(tempSplit[0]) + "</a>")
                     }
                     

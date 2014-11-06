@@ -24,7 +24,6 @@
         android:id="@+id/txtLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        
         android:background="#EEEEEEEE"
         android:textSize="18sp"
         android:textStyle="bold"/>
@@ -46,7 +45,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/region"
         android:paddingTop="12dp"
-        
         android:textSize="14sp"/>
         
     <TextView
@@ -55,25 +53,135 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/txt2"
         android:paddingTop="12dp"
-        
         android:textSize="14sp"
         android:textStyle="bold"
     	android:text="CONTACT DETAILS"/>
     
+    
     <TextView
-        android:id="@+id/txt3"
+        android:id="@+id/phoneLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/contact"
         android:paddingTop="12dp"
-        
+        android:textSize="14sp"
+        android:text="Phone Number: "/>
+    
+    <TextView
+        android:id="@+id/txtPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/phoneLabel"
+        android:layout_below="@id/contact"
+        android:paddingTop="12dp"
         android:textSize="14sp"/>
-        
+    
+     <TextView
+        android:id="@+id/emailLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/phoneLabel"
+        android:paddingTop="12dp"
+        android:textSize="14sp"
+        android:text="Email: "/>
+    
+    <TextView
+        android:id="@+id/txtEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/emailLabel"
+        android:layout_below="@id/phoneLabel"
+        android:autoLink="email"
+        android:paddingTop="12dp"
+        android:textSize="14sp"/>
+    
+     <TextView
+        android:id="@+id/addressLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/emailLabel"
+        android:paddingTop="12dp"
+        android:textSize="14sp"
+        android:text="Address: "/>
+    
+    <TextView
+        android:id="@+id/txtAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/addressLabel"
+        android:layout_below="@id/emailLabel"
+        android:paddingTop="12dp"
+        android:textSize="14sp"/>
+    
+	 <TextView
+        android:id="@+id/postalLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addressLabel"
+        android:paddingTop="12dp"
+        android:textSize="14sp"
+        android:text="Postal Address: "/>
+    
+    <TextView
+        android:id="@+id/txtPostal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/postalLabel"
+        android:layout_below="@id/addressLabel"
+        android:paddingTop="12dp"
+        android:textSize="14sp"/>
+    
+     <TextView
+        android:id="@+id/faxLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/postalLabel"
+        android:paddingTop="12dp"
+        android:textSize="14sp"
+        android:text="Fax: "/>
+    
+    <TextView
+        android:id="@+id/txtFax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/faxLabel"
+        android:layout_below="@id/postalLabel"
+        android:paddingTop="12dp"
+        android:textSize="14sp"/>
+    
+     <TextView
+        android:id="@+id/webLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/faxLabel"
+        android:paddingTop="12dp"
+        android:textSize="14sp"
+        android:text="Web Page: "/>
+    
+    <TextView
+        android:id="@+id/txtWeb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/webLabel"
+        android:layout_below="@id/faxLabel"
+        android:autoLink="web"
+        android:paddingTop="12dp"
+        android:textSize="14sp"/>
+    
+    
+   <!--  <TextView
+        android:id="@+id/txt3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtPhone"
+        android:paddingTop="12dp"
+        android:textSize="14sp"/>
+         -->
     <TextView
         android:id="@+id/overview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txt3"
+        android:layout_below="@id/webLabel"
         android:paddingTop="12dp"
         
         android:textSize="14sp"

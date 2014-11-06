@@ -9,7 +9,7 @@ public class ItemFragmentPair {
 	private String title;
 	private Fragment fragmentInstance;
 	private static final Logger LOG = Logger.getLogger("fragmentPair");
-	
+
 	/**
 	 * Initialize data-members
 	 * 

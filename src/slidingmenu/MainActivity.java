@@ -66,6 +66,11 @@ public class MainActivity extends Activity {
     {
     	return this;
     }
+    
+    private Activity getActivity()
+    {
+    	return this.getActivity();
+    }
 
 
     protected void initializeViewElements(Bundle savedInstanceState) {
@@ -160,6 +165,13 @@ public class MainActivity extends Activity {
         public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
 
             String selectedLabel = navMenuTitles.get(position);
+            
+            if(selectedLabel.equals("Search"))
+            {
+            	displaySearch();
+            }
+            else
+            {
             int clickedId = mGenerator.getIdForLabel(selectedLabel);
 
             Log.i("INFO", "Selected: " + selectedLabel + ", " + clickedId);
@@ -171,6 +183,7 @@ public class MainActivity extends Activity {
             else {
                 displayViewByClass(clickedId);
                 Log.i("sub", "Hit a leaf node");
+            }
             }
         }
 
@@ -300,14 +313,25 @@ public class MainActivity extends Activity {
         return super.onPrepareOptionsMenu(menu);
     }
     
+    private void displaySearch()
+    {
+    	Fragment fragment = new SearchFragment(this);
+
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.frame_container, fragment).addToBackStack(null).commit();
+
+       // setTitle(navMenuTitles.get(itemId));
+        mDrawerLayout.closeDrawer(mDrawerList);
+    }
+    
    private void displayViewByClass(int itemId) {
        Log.i("Leaf", "Requested view of " + itemId);
 
        Fragment fragment = new DatabaseDetailFragment(itemId,this);
          //Menu_dossFragment mdf = new Menu_dossFragment(itemId, this);
        
-       android.app.FragmentTransaction ft = getFragmentManager().beginTransaction();
-       ft.show(fragment);
+       
        
        
            FragmentManager fragmentManager = getFragmentManager();
