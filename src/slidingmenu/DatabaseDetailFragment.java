@@ -4,6 +4,7 @@ package slidingmenu;
 
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import slidingmenu.model.Info;
 
@@ -19,6 +20,9 @@ import android.net.Uri;
 import android.net.Uri.Builder;
 import android.os.Bundle;
 import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
+import android.text.style.UnderlineSpan;
 import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,13 +50,13 @@ public class DatabaseDetailFragment extends Fragment {
     		View rootView = inflater.inflate(R.layout.fragment_main, container, false);
     		View mainView = rootView.findViewById(R.id.mainLayout);
     		//set background of the view
-    		mainView.setBackgroundResource(Utility.findBackColour(catName));
+    		//mainView.setBackgroundResource(Utility.findBackColour(catName));
     		//get the txtlabel
     		TextView txtLabel=(TextView)rootView.findViewById(R.id.txtLabel);
     		//set the text of it to title
 			txtLabel.setText(info.getTitle());
 			//set the background colour of the heading
-			txtLabel.setBackgroundResource(Utility.findColour(catName));
+			//txtLabel.setBackgroundResource(Utility.findColour(catName));
 			  
 			TextView txt2=(TextView)rootView.findViewById(R.id.txt2);
 			txt2.setText(info.getRegions());
@@ -62,14 +66,14 @@ public class DatabaseDetailFragment extends Fragment {
 			final TextView txtPostal =(TextView) rootView.findViewById(R.id.txtPostal);
 			final TextView txtFax =(TextView) rootView.findViewById(R.id.txtFax);
 			final TextView txtWeb =(TextView) rootView.findViewById(R.id.txtWeb);
+
 			//TextView txt3=(TextView)rootView.findViewById(R.id.txt3);
-			final String phNum = info.getPhNum();
+			String phNum = info.getPhNum();
 			String email = info.getEmail();
 			String address = info.getAddress();
 			String postal = info.getPostal();
 			String fax = info.getFax();
 			final String web = info.getWeb();
-			//String contacts = "";
 			String Phone = "";
 			String Email = "";
 			String Address = "";
@@ -82,8 +86,12 @@ public class DatabaseDetailFragment extends Fragment {
 				{
 					//System.getProperty(~line.seperator~) is used to get the enter character
 					//to make the text that follows go on the next line
+					//String[] tempSplit = .split(",");
+				    
+                    //web = Clean(tempSplit[0]);
+					phNum=phNum.replaceAll("(09)", "09").replaceAll("09", "+649");
 					Phone = Phone + phNum + System.getProperty("line.separator");
-					txtPhone.setOnClickListener(new View.OnClickListener() 
+					/*txtPhone.setOnClickListener(new View.OnClickListener() 
 					{
 				    	 
 					    public void onClick(View v) {
@@ -97,8 +105,11 @@ public class DatabaseDetailFragment extends Fragment {
 				        
 				    }
 				});
-					txtPhone.setTextColor(Color.GREEN);
+					txtPhone.setTextColor(Color.GREEN);*/
+					//Pattern pattern = Pattern.compile("[0-9]");
 					txtPhone.setText(Phone);
+					//Linkify.addLinks(txtPhone,pattern,null);
+					Linkify.addLinks(txtPhone,Linkify.PHONE_NUMBERS);
 				}
 				else
 				{
@@ -116,8 +127,24 @@ public class DatabaseDetailFragment extends Fragment {
 				if (address != null && address != "" && !address.equals("Address: "))
 				{
 					Address = Address + address + System.getProperty("line.separator");
-					tempString = Address.replaceAll(",","").replaceAll(" ","+");
-					txtPhone.setOnClickListener(new View.OnClickListener() 
+					//txtAddress.setText("1600 Amphitheatre Parkway, Mountain View, CA 94043");
+					//Linkify.addLinks(txtAddress,Linkify.MAP_ADDRESSES);
+					//Linkify.addLinks(txtAddress,Linkify.MAP_ADDRESSES);
+					SpannableString spanStr = new SpannableString(Address.toString());
+					spanStr.setSpan(new UnderlineSpan(), 0, spanStr.length(), 0);
+					txtAddress.setText(spanStr);
+					txtAddress.setOnClickListener(new View.OnClickListener() 
+					{
+				    	 
+					    public void onClick(View v) {
+					Intent geoIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q="
+                            +txtAddress.getText().toString()));
+					startActivity(geoIntent);
+					    }
+					});
+					/*tempString = Address.replaceAll(",","").replaceAll(" ","+");
+					
+					txtAddress.setOnClickListener(new View.OnClickListener() 
 					{
 				    	 
 					    public void onClick(View v) {
@@ -132,8 +159,8 @@ public class DatabaseDetailFragment extends Fragment {
 							    startActivity(intent);
 					    	}
 				    }
-				});
-					txtAddress.setText(Address);
+				});*/
+					
 				}
 					
 				/*	String tempString = Address.replaceAll(",","").replaceAll(" ","+");
@@ -177,7 +204,7 @@ public class DatabaseDetailFragment extends Fragment {
 					txtWeb.setText("N/A");
 				}
 			//txt3.setText(contacts);
-			
+			//mmm yeah ok 
 			
 			TextView txt4=(TextView)rootView.findViewById(R.id.txt4);
 			txt4.setText(info.getIntrotext());

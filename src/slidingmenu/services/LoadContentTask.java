@@ -75,7 +75,7 @@ public class LoadContentTask extends AsyncTask<String, Void, Void> {
         {
 
             // Defined URL  where to send data
-
+        	//here you need to add the last updated date to the URL before sending it in
             URL url = new URL(categoryURL);
 
 
@@ -108,7 +108,7 @@ public class LoadContentTask extends AsyncTask<String, Void, Void> {
             parseCategories(content);
 
             // Defined URL  where to send data
-
+          //here you need to add the last updated date to the URL before sending it in
             url = new URL(itemURL);
 
 

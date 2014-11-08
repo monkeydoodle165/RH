@@ -14,7 +14,7 @@
     android:id ="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFFFF"
+    android:background="@color/raeburnBack"
     android:fillViewport="true"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
@@ -24,7 +24,8 @@
         android:id="@+id/txtLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#EEEEEEEE"
+        android:background="@color/raeburn"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"/>
         
@@ -73,6 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/phoneLabel"
         android:layout_below="@id/contact"
+
         android:paddingTop="12dp"
         android:textSize="14sp"/>
     
@@ -80,7 +82,7 @@
         android:id="@+id/emailLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/phoneLabel"
+        android:layout_below="@id/txtPhone"
         android:paddingTop="12dp"
         android:textSize="14sp"
         android:text="Email: "/>
@@ -90,11 +92,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/emailLabel"
-        android:layout_below="@id/phoneLabel"
+        android:layout_below="@id/txtPhone"
         android:autoLink="email"
         android:paddingTop="12dp"
         android:textSize="14sp"/>
-    
+
+
      <TextView
         android:id="@+id/addressLabel"
         android:layout_width="wrap_content"
@@ -112,9 +115,9 @@
         android:layout_below="@id/emailLabel"
         android:paddingTop="12dp"
         android:textSize="14sp"/>
-    
-	 <TextView
-        android:id="@+id/postalLabel"
+
+	<TextView
+	    android:id="@+id/postalLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/addressLabel"
@@ -165,6 +168,7 @@
         android:layout_toRightOf="@id/webLabel"
         android:layout_below="@id/faxLabel"
         android:autoLink="web"
+        
         android:paddingTop="12dp"
         android:textSize="14sp"/>
     
