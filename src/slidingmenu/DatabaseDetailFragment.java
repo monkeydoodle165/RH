@@ -66,8 +66,6 @@ public class DatabaseDetailFragment extends Fragment {
 			final TextView txtPostal =(TextView) rootView.findViewById(R.id.txtPostal);
 			final TextView txtFax =(TextView) rootView.findViewById(R.id.txtFax);
 			final TextView txtWeb =(TextView) rootView.findViewById(R.id.txtWeb);
-
-			//TextView txt3=(TextView)rootView.findViewById(R.id.txt3);
 			String phNum = info.getPhNum();
 			String email = info.getEmail();
 			String address = info.getAddress();
@@ -80,56 +78,37 @@ public class DatabaseDetailFragment extends Fragment {
 			String Postal = "";
 			String Fax = "";
 			String Web = "";
-			//Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(phNum));
-			//all of this code just builds one long string. cheers
+
 				if (phNum != null && phNum != "" && !phNum.equals(""))
 				{
-					//System.getProperty(~line.seperator~) is used to get the enter character
-					//to make the text that follows go on the next line
-					//String[] tempSplit = .split(",");
-				    
-                    //web = Clean(tempSplit[0]);
 					phNum=phNum.replaceAll("(09)", "09").replaceAll("09", "+649");
 					Phone = Phone + phNum + System.getProperty("line.separator");
-					/*txtPhone.setOnClickListener(new View.OnClickListener() 
-					{
-				    	 
-					    public void onClick(View v) {
-				        // TODO Auto-generated method stub
-				        Intent callIntent = new Intent(Intent.ACTION_VIEW);
-				        
-				        //Phone Number: 743935273240
-				        //mailto:
-				        callIntent.setData(Uri.parse("tel:"+phNum));
-				        startActivity(callIntent );
-				        
-				    }
-				});
-					txtPhone.setTextColor(Color.GREEN);*/
-					//Pattern pattern = Pattern.compile("[0-9]");
 					txtPhone.setText(Phone);
-					//Linkify.addLinks(txtPhone,pattern,null);
 					Linkify.addLinks(txtPhone,Linkify.PHONE_NUMBERS);
 				}
 				else
 				{
-					txtPhone.setText("N/A");
+					TextView phoneLabel =(TextView) rootView.findViewById(R.id.phoneLabel);
+					//((ViewGroup) phoneLabel.getParent()).removeView(phoneLabel);
+					phoneLabel.setText("");
+					phoneLabel.setHeight(0);
+				
 				}
 				
-				if (email != null && email != "" && !email.equals("Email: "))
+				if (email != null && email != "" && !email.equals(""))
 				{
 					Email = Email + email + System.getProperty("line.separator");
 					txtEmail.setText(Email);
 				}else
 				{
-					txtEmail.setText("N/A");
+					TextView emailLabel =(TextView) rootView.findViewById(R.id.emailLabel);
+					//((ViewGroup) emailLabel.getParent()).removeView(emailLabel);
+					emailLabel.setText("");
+					emailLabel.setHeight(0);
 				}
-				if (address != null && address != "" && !address.equals("Address: "))
+				if (address != null && address != "" && !address.equals(""))
 				{
 					Address = Address + address + System.getProperty("line.separator");
-					//txtAddress.setText("1600 Amphitheatre Parkway, Mountain View, CA 94043");
-					//Linkify.addLinks(txtAddress,Linkify.MAP_ADDRESSES);
-					//Linkify.addLinks(txtAddress,Linkify.MAP_ADDRESSES);
 					SpannableString spanStr = new SpannableString(Address.toString());
 					spanStr.setSpan(new UnderlineSpan(), 0, spanStr.length(), 0);
 					txtAddress.setText(spanStr);
@@ -142,70 +121,47 @@ public class DatabaseDetailFragment extends Fragment {
 					startActivity(geoIntent);
 					    }
 					});
-					/*tempString = Address.replaceAll(",","").replaceAll(" ","+");
-					
-					txtAddress.setOnClickListener(new View.OnClickListener() 
-					{
-				    	 
-					    public void onClick(View v) {
-							String geoString = "geo:0,0?q=" + tempString;
-							Builder geoBuilder = new Uri.Builder();//URI.create(geoString);
-							geoBuilder.appendPath(geoString);
-							Uri geoLocation = geoBuilder.build();
-				        // TODO Auto-generated method stub
-							Intent intent = new Intent(Intent.ACTION_VIEW);
-					    	if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
-							    intent.setData(geoLocation);
-							    startActivity(intent);
-					    	}
-				    }
-				});*/
-					
-				}
-					
-				/*	String tempString = Address.replaceAll(",","").replaceAll(" ","+");
-					String geoString = "geo:0,0?q=" + tempString;
-					Builder geoBuilder = new Uri.Builder();//URI.create(geoString);
-					geoBuilder.appendPath(geoString);
-					Uri geoLocation = geoBuilder.build();
-					
-					Intent intent = new Intent(Intent.ACTION_VIEW);
-				    intent.setData(geoLocation);
-				    if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
-				        startActivity(intent);
-				    }
-					txtAddress.setText(Address);
-				}*/else
+				}else
 				{
-					txtAddress.setText("N/A");
+					TextView addressLabel =(TextView) rootView.findViewById(R.id.addressLabel);
+					//((ViewGroup) addressLabel.getParent()).removeView(addressLabel);
+					addressLabel.setText("");
+					addressLabel.setHeight(0);
 				}
-				if (postal != null && postal != "" && !postal.equals("Postal Address: "))
+				if (postal != null && postal != "" && !postal.equals(""))
 				{
 					Postal = Postal + postal + System.getProperty("line.separator");
 					txtPostal.setText(Postal);
 				}else
 				{
-					txtPostal.setText("N/A");
+					TextView postalLabel =(TextView) rootView.findViewById(R.id.postalLabel);
+					//((ViewGroup) postalLabel.getParent()).removeView(postalLabel);
+					postalLabel.setText("");
+					postalLabel.setHeight(0);
 				}
-				if (fax != null && fax != "" && !fax.equals("Fax: "))
+				if (fax != null && fax != "" && !fax.equals(""))
 				{
 					Fax = Fax + fax + System.getProperty("line.separator");
 					txtFax.setText(Fax);
 				}else
 				{
-					txtFax.setText("N/A");
+					TextView faxLabel =(TextView) rootView.findViewById(R.id.faxLabel);
+					//((ViewGroup) faxLabel.getParent()).removeView(faxLabel);
+					faxLabel.setText("");
+					faxLabel.setHeight(0);
 				}
-				if (web != null && web != "" && !web.equals("Website: "))
+				if (web != null && web != "" && !web.equals(""))
 				{
 					Web = Web + web;
 					txtWeb.setText(Web);
 				}else
 				{
-					txtWeb.setText("N/A");
+					TextView webLabel =(TextView) rootView.findViewById(R.id.webLabel);
+					//((ViewGroup) webLabel.getParent()).removeView(webLabel);
+					webLabel.setText("");
+					webLabel.setHeight(0);
 				}
-			//txt3.setText(contacts);
-			//mmm yeah ok 
-			
+
 			TextView txt4=(TextView)rootView.findViewById(R.id.txt4);
 			txt4.setText(info.getIntrotext());
 			
