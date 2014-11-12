@@ -2,22 +2,24 @@ package slidingmenu;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+//import java.util.logging.Logger;
 
 import slidingmenu.adaptor.NavDrawerListAdapter;
 import slidingmenu.model.NavDrawerItem;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Context;
+//import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
-import android.content.res.TypedArray;
+//import android.content.res.TypedArray;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.app.FragmentTransaction;
+//import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
-import android.view.LayoutInflater;
+//import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,7 +40,6 @@ public class MainActivity extends Activity {
 	private DatabaseHandler db = new DatabaseHandler(this);
     private MenuGeneratorService mGenerator = new MenuGeneratorService(db);
 
-	private Logger LOG = Logger.getLogger(MainActivity.class.getName());
 	private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -61,25 +62,12 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         initializeViewElements(savedInstanceState);
     }
-    
-    private Context getContext()
-    {
-    	return this;
-    }
-    
-    private Activity getActivity()
-    {
-    	return this.getActivity();
-    }
-
-
     protected void initializeViewElements(Bundle savedInstanceState) {
         setContentView(R.layout.activity_main);
 
         mTitle = mDrawerTitle = getTitle();
 
         // Navigation drawer icons from resources
-        //navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 
@@ -163,12 +151,18 @@ public class MainActivity extends Activity {
     	
         @Override
         public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-
+        	Uri uriUrl = Uri.parse("http://www.raeburnhouse.org.nz/about-us");  
+            Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);  
+            
             String selectedLabel = navMenuTitles.get(position);
             
             if(selectedLabel.equals("Search"))
             {
             	displaySearch();
+            }
+            else if(selectedLabel.equals("About"))
+            {
+            startActivity(launchBrowser); 
             }
             else
             {
@@ -329,10 +323,6 @@ public class MainActivity extends Activity {
        Log.i("Leaf", "Requested view of " + itemId);
 
        Fragment fragment = new DatabaseDetailFragment(itemId,this);
-         //Menu_dossFragment mdf = new Menu_dossFragment(itemId, this);
-       
-       
-       
        
            FragmentManager fragmentManager = getFragmentManager();
            fragmentManager.beginTransaction()
@@ -351,28 +341,7 @@ public class MainActivity extends Activity {
     /**
     * Displaying fragment view for selected nav drawer list item
     * */
-   private void displayView(int position) {
-       // update the main content by replacing fragments
-	   //pass position or similar to databasedetailfragment then populate and show page dependent on that id
-       Fragment fragment = null;
-
-       if (fragment != null) {
-           FragmentManager fragmentManager = getFragmentManager();
-           fragmentManager.beginTransaction()
-                   .replace(R.id.frame_container, fragment).commit();
-
-           // update selected item and title, then close the drawer
-           mDrawerList.setItemChecked(position, true);
-           mDrawerList.setSelection(position);
-           setTitle(navMenuTitles.get(position));
-           mDrawerLayout.closeDrawer(mDrawerList);
-       }
-       else {
-           // error in creating fragment
-           Log.e("MainActivity", "Error in creating fragment");
-       }
-   }
- 
+   
     @Override
     public void setTitle(CharSequence title) {
         mTitle = title;

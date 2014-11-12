@@ -3,8 +3,8 @@ package slidingmenu;
 
 
 
-import java.util.ArrayList;
-import java.util.regex.Pattern;
+//import java.util.ArrayList;
+//import java.util.regex.Pattern;
 
 import slidingmenu.model.Info;
 
@@ -13,15 +13,15 @@ import com.example.rh.R;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentManager;
+//import android.app.FragmentManager;
 import android.content.Intent;
-import android.graphics.Color;
+//import android.graphics.Color;
 import android.net.Uri;
-import android.net.Uri.Builder;
+//import android.net.Uri.Builder;
 import android.os.Bundle;
-import android.text.Spannable;
+//import android.text.Spannable;
 import android.text.SpannableString;
-import android.text.method.LinkMovementMethod;
+//import android.text.method.LinkMovementMethod;
 import android.text.style.UnderlineSpan;
 import android.text.util.Linkify;
 import android.view.LayoutInflater;
@@ -35,7 +35,6 @@ public class DatabaseDetailFragment extends Fragment {
 	private static DatabaseHandler db;
 	private static Info info;
 	private static int id;
-	private static int catid;
 	String tempString = "";
 	
 	
@@ -48,7 +47,7 @@ public class DatabaseDetailFragment extends Fragment {
     		//get the cat name from the database
     		String catName = this.db.getCat(this.info.getCatid()).getName();
     		View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-    		View mainView = rootView.findViewById(R.id.mainLayout);
+    		//View mainView = rootView.findViewById(R.id.mainLayout);
     		//set background of the view
     		//mainView.setBackgroundResource(Utility.findBackColour(catName));
     		//get the txtlabel
@@ -89,7 +88,6 @@ public class DatabaseDetailFragment extends Fragment {
 				else
 				{
 					TextView phoneLabel =(TextView) rootView.findViewById(R.id.phoneLabel);
-					//((ViewGroup) phoneLabel.getParent()).removeView(phoneLabel);
 					phoneLabel.setText("");
 					phoneLabel.setHeight(0);
 				
@@ -102,7 +100,6 @@ public class DatabaseDetailFragment extends Fragment {
 				}else
 				{
 					TextView emailLabel =(TextView) rootView.findViewById(R.id.emailLabel);
-					//((ViewGroup) emailLabel.getParent()).removeView(emailLabel);
 					emailLabel.setText("");
 					emailLabel.setHeight(0);
 				}
@@ -124,7 +121,6 @@ public class DatabaseDetailFragment extends Fragment {
 				}else
 				{
 					TextView addressLabel =(TextView) rootView.findViewById(R.id.addressLabel);
-					//((ViewGroup) addressLabel.getParent()).removeView(addressLabel);
 					addressLabel.setText("");
 					addressLabel.setHeight(0);
 				}
@@ -135,7 +131,6 @@ public class DatabaseDetailFragment extends Fragment {
 				}else
 				{
 					TextView postalLabel =(TextView) rootView.findViewById(R.id.postalLabel);
-					//((ViewGroup) postalLabel.getParent()).removeView(postalLabel);
 					postalLabel.setText("");
 					postalLabel.setHeight(0);
 				}
@@ -146,7 +141,6 @@ public class DatabaseDetailFragment extends Fragment {
 				}else
 				{
 					TextView faxLabel =(TextView) rootView.findViewById(R.id.faxLabel);
-					//((ViewGroup) faxLabel.getParent()).removeView(faxLabel);
 					faxLabel.setText("");
 					faxLabel.setHeight(0);
 				}
@@ -157,7 +151,6 @@ public class DatabaseDetailFragment extends Fragment {
 				}else
 				{
 					TextView webLabel =(TextView) rootView.findViewById(R.id.webLabel);
-					//((ViewGroup) webLabel.getParent()).removeView(webLabel);
 					webLabel.setText("");
 					webLabel.setHeight(0);
 				}
@@ -165,8 +158,6 @@ public class DatabaseDetailFragment extends Fragment {
 			TextView txt4=(TextView)rootView.findViewById(R.id.txt4);
 			txt4.setText(info.getIntrotext());
 			
-//			TextView txt5=(TextView)rootView.findViewById(R.id.txt5);
-//			txt5.setText(detailInfo.getBulletPoints()[0] + detailInfo.getBulletPoints()[1] + detailInfo.getBulletPoints()[2]); 
         return rootView;
     }
     

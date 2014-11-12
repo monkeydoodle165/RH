@@ -46,12 +46,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        //File outFile =context.getDatabasePath(DATABASE_NAME);
-        //String outFileName =outFile.getPath() ;
-        //dbPath= outFileName;
     }
     
-    //DatabaseHandler mOpenHelper = new DatabaseHandler(getContext());
     // Creating Tables
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -154,10 +150,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     
     	 public List<Info> getItemByNameSearch(String input) {
     	        List<Info> infoList = new ArrayList<Info>();
-    	        // Select All Query
-    	      //  String selectQuery = ("SELECT _id, firstName, lastName, title FROM employee WHERE firstName || ' ' || lastName LIKE ?", 
-				//		new String[]{"%" + searchText.getText().toString() + "%"}) ;
-
     	        SQLiteDatabase db = this.getWritableDatabase();
     	        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_INFO + " WHERE " + ITEM_TITLE + " LIKE ?", 
 						new String[]{"%" + input + "%"});
