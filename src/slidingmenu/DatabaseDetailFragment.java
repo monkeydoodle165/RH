@@ -1,11 +1,5 @@
 package slidingmenu;
 
-
-
-
-//import java.util.ArrayList;
-//import java.util.regex.Pattern;
-
 import slidingmenu.model.Info;
 
 import com.example.rh.R;

@@ -1,11 +1,9 @@
 package slidingmenu.model;
 
 public class Category {
-	//private variables
 	private int _id;
 	private String _name;
 	private String _parent;
-	
 	
 	public Category(String _name, String _parent) {
         this(0, _name, _parent);
@@ -35,8 +33,6 @@ public class Category {
 	public void setParent(String _parent) {
 		this._parent = _parent;
 	}
-
-
     public boolean isRootElement() {
         return "0".equals(getParent());
     }

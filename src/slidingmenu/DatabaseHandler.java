@@ -260,19 +260,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return count;
     }
 
-
-    /**
-     * Check if the database exist
-     *
-     * @return true if it exists, false if it doesn't
-     */
     public boolean checkDataBase() {
         return getInfoCount()> 0 ? true: false;
     }
-
-
-
-
 
     // Adding new contact
     public void addCat(Category category) {
@@ -304,8 +294,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // return Category
         return category;
     }
-    
-    //TEST
     
     // Getting info by category
     public List<Info> getCategory(int catId) {
@@ -340,13 +328,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // return contact list
         return infoList;
     }
-    
-    
-    
-    //END TEST
-    
-    
-    
 
     // Getting All Category
     public List<Category> getAllCat() {
@@ -378,7 +359,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(CAT_ID, category.getId());
         values.put(CAT_CATNAME, category.getName());
         values.put(CAT_PARENT, category.getParent());
-
 
         // updating row
         return db.update(TABLE_CAT, values, CAT_ID + " = ?",

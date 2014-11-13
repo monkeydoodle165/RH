@@ -4,12 +4,8 @@ import slidingmenu.*;
 import slidingmenu.model.Category;
 import slidingmenu.model.Info;
 import slidingmenu.model.MenuItem;
-
 import java.util.*;
 
-/**
- * @author Marnix Cook
- */
 public class MenuGeneratorService {
 
     public static final int ROOT_MENU_PARENT = 0;
@@ -26,11 +22,6 @@ public class MenuGeneratorService {
      */
     private Map<Integer, List<String>> menuMap;
 
-    /**
-     * list of menu item labels
-     */
-    private List<String> mainMenuItemLabels;
-
     private boolean initialized = false;
 
     /**
@@ -40,7 +31,6 @@ public class MenuGeneratorService {
      */
     public MenuGeneratorService(DatabaseHandler dbHandler) {
         this.dbHandler = dbHandler;
-
     }
 
 
@@ -60,27 +50,19 @@ public class MenuGeneratorService {
         // iterate to find all sub items
         for (Category cat : allCategories) {
             int parent = Integer.parseInt(cat.getParent());
-
-          //SELECT name FROM INFO WHERE cat_id = cat.getId
-            //add it to a list
-            
-            
             
             // menu map doesn't have a list for this parent yet?
             if (!this.menuMap.containsKey(parent)) {
                 this.menuMap.put(parent, new ArrayList<String>());
             }
-            
             else
             {
             	this.menuMap.put(cat.getId(), new ArrayList<String>());
             }
-            //Run code here to add all other 
+
 
             // add element to map
             this.menuMap.get(parent).add(cat.getName());
-            
-            //TODO add the items under the categories here
             
             List<Info> infoByCat = this.dbHandler.getItemByCat(cat.getId());
             
@@ -97,12 +79,10 @@ public class MenuGeneratorService {
             	menuItem = new MenuItem(item.getID(),"item");
                 labelIdMap.put(item.getTitle(), menuItem);
             }
-            
-            
+
         }
         initialized = true;
     }
-
 
     public Map<Integer, List<String>> getMenuMap() {
         if (!initialized) {

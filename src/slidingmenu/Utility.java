@@ -1,7 +1,5 @@
 package slidingmenu;
 
-import android.graphics.Color;
-
 import com.example.rh.R;
 
 public class Utility {

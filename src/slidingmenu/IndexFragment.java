@@ -1,7 +1,6 @@
 package slidingmenu;
 
 
-
 import com.example.rh.R;
 
 import android.app.Fragment;

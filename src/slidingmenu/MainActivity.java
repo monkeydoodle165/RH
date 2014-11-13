@@ -2,24 +2,18 @@ package slidingmenu;
 
 import java.util.ArrayList;
 import java.util.List;
-//import java.util.logging.Logger;
-
 import slidingmenu.adaptor.NavDrawerListAdapter;
 import slidingmenu.model.NavDrawerItem;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
-//import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-//import android.content.res.TypedArray;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
-//import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
-//import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -76,7 +70,6 @@ public class MainActivity extends Activity {
         initializeMenuItems();
 
         // Recycle the typed array
-
         mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
 
         // setting the Navigation drawer list adapter
@@ -91,8 +84,6 @@ public class MainActivity extends Activity {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
         if (savedInstanceState == null) {
-            // on first time display view for first nav item
-   //         displayView(0);
         }
     }
 
@@ -131,18 +122,10 @@ public class MainActivity extends Activity {
 
         for (String label : navMenuTitles) {
 
-        	navDrawerItems.add(
-        			new NavDrawerItem(
-                            label
-                            //,navMenuIcons.getResourceId(0, -1)
-                    )
-                );
-
+        	navDrawerItems.add(new NavDrawerItem(label));
         }
     }
-
-
-
+    
     /**
      * Slide menu item click listener
      * */
@@ -183,14 +166,11 @@ public class MainActivity extends Activity {
 
         private void generateSubMenuFor(int categoryId) {
             List<NavDrawerItem> subNavDrawerItems = createSubMenuDrawer(categoryId);
-
-
             
             // setting the Navigation drawer list adapter
             final NavDrawerListAdapter adapter = new NavDrawerListAdapter(getApplicationContext(), subNavDrawerItems);
             mDrawerList.setAdapter(adapter);
             mDrawerList.setOnItemClickListener(onSubmenuClick());
-
         }
 
         private OnItemClickListener onSubmenuClick() {
@@ -200,20 +180,23 @@ public class MainActivity extends Activity {
 				public void onItemClick(AdapterView<?> parent, View view, int subPosition, long id) {
 
                     // back button hit?
-					if (isBackButton(subPosition)) {
+					if (isBackButton(subPosition)) 
+					{
                         goBackUp();
 					}
-					else {
-
+					else 
+					{
                         List<String> currentLabels = mGenerator.getSubMenuItemLabels(getLatestOnStack());
                         String selectedLabel = currentLabels.get(subPosition - 1);
                         int categoryId = mGenerator.getIdForLabel(selectedLabel);
 
-                        if (mGenerator.hasChildren(categoryId)) {
+                        if (mGenerator.hasChildren(categoryId)) 
+                        {
                             pushStack(categoryId);
                             generateSubMenuFor(categoryId);
                         }
-                        else {
+                        else 
+                        {
                             displayViewByClass(categoryId);
 
                             Log.i("INFO", "Reached leaf: " + selectedLabel);
@@ -223,7 +206,8 @@ public class MainActivity extends Activity {
 					}
 				}
 
-                private boolean isBackButton(int subPosition) {
+                private boolean isBackButton(int subPosition) 
+                {
                     return subPosition == 0;
                 }
 

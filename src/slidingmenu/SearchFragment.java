@@ -1,20 +1,12 @@
 package slidingmenu;
 
-
-
-
 import java.util.ArrayList;
 import java.util.List;
-
 import slidingmenu.DatabaseHandler;
-
-//import slidingmenu.MainActivity.SlideMenuClickListener;
 import slidingmenu.adaptor.NavDrawerListAdapter;
 import slidingmenu.model.Info;
 import slidingmenu.model.NavDrawerItem;
-
 import com.example.rh.R;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;
@@ -35,9 +27,6 @@ public class SearchFragment extends Fragment {
 	
 	private static DatabaseHandler db;
 	private static List<Info> currentList;
-	//also need you to go through all the classes and make sure all of this is private
-	//and the functions that dont need to be public and unecessary coments and so on
-	//I#ll do all the real commenting later wait 
 	protected EditText input;
 	protected ImageButton searchButton;
 	private static Activity activity;
@@ -53,42 +42,31 @@ public class SearchFragment extends Fragment {
     	searchButton = (ImageButton) rootView.findViewById(R.id.searchButton);
     	searchButton.setOnClickListener(new View.OnClickListener() 
 		{
+		    public void onClick(View v) 
+		    {
+		    	String inputString = input.getText().toString();
+		    	currentList = db.getItemByNameSearch(inputString);
     		
-		    public void onClick(View v) {
-		   Log.i("myApp", "Button Clicked");
-    	 String inputString = input.getText().toString();
-    	 Log.i("myApp", "Button Clicked2");
-    		currentList = db.getItemByNameSearch(inputString);
-    		
-    		displayList(currentList);
-    		for (Info in : currentList){
-    		   String log = "Id: "+in.getTitle();
-    		   Log.d("Info: ", log);   
-    		}
-		    }});
+		    	displayList(currentList);
+		    	for (Info in : currentList)
+		    	{
+		    		String log = "Id: "+in.getTitle();
+		    		Log.d("Info: ", log);   
+    			}
+		    }
+		 });
         return rootView;
     }
     
     private void displayList(List<Info> input)
     {
     	ListView mDrawerList = (ListView) rootView.findViewById(R.id.list);
-
-        
-
     	ArrayList<NavDrawerItem> navDrawerItems = new ArrayList<NavDrawerItem>();
 
         for (Info info : currentList) {
 
         	navDrawerItems.add(new NavDrawerItem(info.getTitle()));
-
         }
-    
-
-    // Recycle the typed array
-
-        
-        
-
         // setting the Navigation drawer list adapter
         NavDrawerListAdapter adapter = new NavDrawerListAdapter(activity.getApplicationContext(), navDrawerItems);
         mDrawerList.setAdapter(adapter);
@@ -110,22 +88,11 @@ public class SearchFragment extends Fragment {
         Log.i("Leaf", "Requested view of " + itemId);
 
         Fragment fragment = new DatabaseDetailFragment(itemId,this.activity);
-          
-        
-        
-        
-        
+
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.search, fragment).addToBackStack(null).commit();
-           
-            
-
-        
-
-     }
-    
-
+    }
  
 	public SearchFragment(){
 		

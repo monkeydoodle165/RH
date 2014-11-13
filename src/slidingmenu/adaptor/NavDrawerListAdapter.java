@@ -1,7 +1,6 @@
 package slidingmenu.adaptor;
 
 import java.util.List;
-
 import slidingmenu.Utility;
 import slidingmenu.model.NavDrawerItem;
 import android.app.Activity;
@@ -10,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.rh.R;
@@ -47,10 +45,8 @@ public class NavDrawerListAdapter extends BaseAdapter {
                     context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             convertView = mInflater.inflate(R.layout.drawer_list_item, null);
         }
+        
         String title = navDrawerItems.get(position).getTitle();
-        
-        
-        
         convertView.setBackgroundResource(Utility.findColour(title));
         TextView txtTitle = (TextView) convertView.findViewById(R.id.title);
                  

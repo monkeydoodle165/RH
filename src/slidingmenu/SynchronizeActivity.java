@@ -4,10 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import slidingmenu.model.Info;
 import slidingmenu.services.LoadContentTask;
 
-import java.util.List;
 
 public class SynchronizeActivity extends Activity {
 
@@ -35,9 +33,8 @@ public class SynchronizeActivity extends Activity {
         });
     }
 
-
     /**
-     * Initialize the database
+     * Initialise the database
      */
     protected void initializeDatabase(Runnable onComplete) {
         //TODO the application should always query the webservice
@@ -45,10 +42,6 @@ public class SynchronizeActivity extends Activity {
     	//so query the database every time here
     	//need to make it just run load content task everytime here
     	if(db.checkDataBase()) {
-            Log.d("Reading: ", "Reading all info..");
-            List<Info> info = db.getAllInfo();
-
-
             if (onComplete != null) {
                 onComplete.run();
             }
