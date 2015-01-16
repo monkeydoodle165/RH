@@ -1,0 +1,31 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+	
+   	    <Button 
+            android:id="@+id/action_directory"
+            android:layout_height="wrap_content"
+     		android:layout_width="wrap_content"
+     		android:layout_marginLeft="0.5dp"
+     		android:text="directory"/>
+   	
+ 	    <Button 
+            android:id="@+id/action_search"
+            android:layout_height="wrap_content"
+     		android:layout_width="wrap_content"
+     		android:layout_marginLeft="0.5dp"
+     		android:text="Search"
+     		android:layout_toRightOf="@id/action_directory" 
+/>
+   	
+   		<Button 
+            android:id="@+id/action_about"
+            android:layout_height="wrap_content"
+     		android:layout_width="wrap_content"
+     		android:layout_marginLeft="0.5dp"
+     		android:text="About"
+     		android:layout_toRightOf="@id/action_search" 
+/>
+
+</RelativeLayout>
