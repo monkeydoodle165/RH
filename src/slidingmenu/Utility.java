@@ -118,6 +118,14 @@ public class Utility {
 		{
 			colour = R.color.mMedia;
 		}
+		else if(title.equals("support services migrant & refugees"))
+		{
+			colour = R.color.orange;
+		}
+		else if(title.equals("back"))
+		{
+			colour = R.color.back;
+		}
 		else
 		{
 			colour = R.color.raeburn;
@@ -127,6 +135,7 @@ public class Utility {
 	
 	
 	//find the background colours for fragments
+	//This is no longer used, it was previously used to set the back colour of the fragments to the colour of the matching category
 	public static int findBackColour(String title)
 	{
 		int colour = 0;

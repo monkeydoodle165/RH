@@ -2,19 +2,25 @@ package slidingmenu.services;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import slidingmenu.DatabaseHandler;
 import slidingmenu.model.Category;
 import slidingmenu.model.Info;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.net.URLConnection;
+import java.sql.Date;
 
 /**
  * Synchronize operation
@@ -23,14 +29,16 @@ public class LoadContentTask extends AsyncTask<String, Void, Void> {
 
     // Required initialization
 
-    //  private final HttpClient Client = new DefaultHttpClient();
+    private static final String Update = "rh";
+	//  private final HttpClient Client = new DefaultHttpClient();
     private Context context;
     private String content;
     private ProgressDialog dialog;
     private String data ="";
     private DatabaseHandler db;
     private Runnable onComplete;
-    //private Date lastUpdated = null;
+    private SharedPreferences prefs;
+    private Date date = null;
     
     //set the URLs to the webservices here
     private final String categoryURL = "http://www.jjk.co.nz/categories.php";
@@ -40,9 +48,29 @@ public class LoadContentTask extends AsyncTask<String, Void, Void> {
         this.context = context;
         this.dialog = new ProgressDialog(this.context);
         this.db = new DatabaseHandler(this.context);
+        prefs = context.getSharedPreferences(Update, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        String updateDate = null;
+        
+        //need to add the current date
+        
+		if(prefs.getString(updateDate, "") == null)
+        {
+        	editor.putString(updateDate, "2015-01-13T09:00:00+13:00");
+        	editor.apply();
+        }
+		else 
+		{
+			//date = prefs.getString(updateDate,"")
+			date = new Date(115, 1, 14);
+			System.out.println(date);
+		}
+        
     }
 
-    protected void onPreExecute() {
+
+
+	protected void onPreExecute() {
         dialog.setMessage("Please wait ...");
         dialog.show();
     }
@@ -180,6 +208,7 @@ public class LoadContentTask extends AsyncTask<String, Void, Void> {
                     String id   = jsonChildNodeExtra.optString("id").toString();
                     String value = jsonChildNodeExtra.optString("value").toString();
                     
+                    //TODO
                     //This is used to check which type of contact detail is stored in this object
                     //This should be extended later to be able to detect what type of contact it is
                     //based on the hpxft_k2_extra_fields table(this needs to be downloaded and stored on the phone)

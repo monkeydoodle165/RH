@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">RH</string>
+    <string name="app_name">Support Services</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>
     
-	<string name="about">Raeburn House is a community development organization (not-for-profit), 
+	<string name="about">Raeburn House is a community development organisation (not-for-profit), 
 	    with a focus on wellbeing of communities. Underpinning our core focus is the desire to 
 	    support better outcomes for all. Our services have been designed to meet diverse needs. 
 	    Whilst our services are targeted to Auckland North we find ourselves delivering our 
 	    training and mentoring across greater Auckland.</string>
+	    
+	<string name="about1">Support Services</string>
+	    
+	<string name="about2">for Community Wellbeing</string>
+	    
+	<string name="about3">When you don\'t know where to go, support is right at your finger tips!</string>
      
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>

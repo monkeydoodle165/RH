@@ -11,11 +11,14 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -30,8 +33,12 @@ public class SearchFragment extends Fragment {
 	protected EditText input;
 	protected ImageButton searchButton;
 	private static Activity activity;
+	private static Context context;
 	
 	View rootView;
+
+
+
 	
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,7 +50,12 @@ public class SearchFragment extends Fragment {
     	searchButton.setOnClickListener(new View.OnClickListener() 
 		{
 		    public void onClick(View v) 
-		    {
+		    { 
+		    	    InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+		    	    inputMethodManager.hideSoftInputFromWindow(input.getWindowToken(), 0);
+		
+
+		    	
 		    	String inputString = input.getText().toString();
 		    	currentList = db.getItemByNameSearch(inputString);
     		
@@ -92,15 +104,18 @@ public class SearchFragment extends Fragment {
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.search, fragment).addToBackStack(null).commit();
+            
+            
     }
  
 	public SearchFragment(){
 		
 	}
     
-    public SearchFragment (Activity act) {
+    public SearchFragment (Activity act, Context cont) {
 		this.db = new DatabaseHandler(act);
 		this.activity = act;
+		this.context = cont;
 	}
 
     

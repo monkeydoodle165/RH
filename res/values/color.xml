@@ -6,9 +6,10 @@
     <color name="list_divider">#272727</color>
     <color name="counter_text_bg">#626262</color>
     <color name="counter_text_color">#c5c4c4</color>
-    <color name="orange">#FBB03B</color>
+    <color name="orange">#FFFBB03B</color>
     <color name="white">#FFFFFFFF</color>
-    
+    <color name="black">#FF000000</color>
+    <color name="back">#FF999999</color>
     <color name="raeburn">#FF009DAD</color>
     
     <color name="abuse">#FFFFDD00</color>
@@ -41,6 +42,8 @@
     <color name="mMedia">#FFAFDFE4</color>
     
     
+    
+    <!-- This portion is no longer used(has previously been used to match the background colour of the fragment to the colour of the category -->
     <color name="raeburnBack">#33009DAD</color>
     
     <color name="abuseBack">#33FFDD00</color>

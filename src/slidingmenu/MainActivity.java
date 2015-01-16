@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import slidingmenu.adaptor.NavDrawerListAdapter;
 import slidingmenu.model.NavDrawerItem;
+import android.app.ActionBar;
+import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -14,12 +16,17 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.rh.R;
 
@@ -29,7 +36,8 @@ import slidingmenu.services.MenuGeneratorService;
 /**
  * Main activity
  */
-public class MainActivity extends Activity {
+public class MainActivity extends Activity
+{
 	
 	private DatabaseHandler db = new DatabaseHandler(this);
     private MenuGeneratorService mGenerator = new MenuGeneratorService(db);
@@ -49,11 +57,53 @@ public class MainActivity extends Activity {
  
     private List<String> navMenuTitles;
 
-    private List<Integer> parentStack = new ArrayList<Integer>();;
+    private List<Integer> parentStack = new ArrayList<Integer>();
+    private boolean isMain = true;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        	
+        
+        setContentView(R.layout.activity_main);
+            LayoutInflater inflater = (LayoutInflater) getActionBar()
+                    .getThemedContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+            View customActionBarView = inflater.inflate(R.layout.actionbar_custom, null);
+
+            ActionBar actionBar = getActionBar();
+            actionBar.setDisplayOptions(
+                    ActionBar.DISPLAY_SHOW_CUSTOM,
+                    ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME
+                            | ActionBar.DISPLAY_SHOW_TITLE);
+            actionBar.setCustomView(customActionBarView,
+                    new ActionBar.LayoutParams(
+                            ViewGroup.LayoutParams.MATCH_PARENT,
+                            ViewGroup.LayoutParams.MATCH_PARENT));
+            
+            final Button buttonDirectory = (Button) findViewById(R.id.action_directory);
+            buttonDirectory.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    showDoSS();
+                }
+            });
+            
+            final Button buttonSearch = (Button) findViewById(R.id.action_search);
+            buttonSearch.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    displaySearch();
+                }
+            });
+            
+            final Button buttonAbout = (Button) findViewById(R.id.action_about);
+            buttonAbout.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    showAbout();
+                }
+            });
+
+            
+        
+        
         initializeViewElements(savedInstanceState);
     }
     protected void initializeViewElements(Bundle savedInstanceState) {
@@ -85,6 +135,16 @@ public class MainActivity extends Activity {
 
         if (savedInstanceState == null) {
         }
+    }
+    
+    public void showDoSS(View v)
+    {
+    	mDrawerLayout.openDrawer(mDrawerList);
+    }
+    
+    public void showDoSS()
+    {
+    	mDrawerLayout.openDrawer(mDrawerList);
     }
 
     protected ActionBarDrawerToggle getActionBarDrawerToggleInstance() {
@@ -126,6 +186,14 @@ public class MainActivity extends Activity {
         }
     }
     
+    public void showAbout()
+    {
+    Uri uriUrl = Uri.parse("http://www.raeburnhouse.org.nz/about-us");  
+    Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);  
+
+    startActivity(launchBrowser); 
+    }
+    
     /**
      * Slide menu item click listener
      * */
@@ -134,9 +202,6 @@ public class MainActivity extends Activity {
     	
         @Override
         public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-        	Uri uriUrl = Uri.parse("http://www.raeburnhouse.org.nz/about-us");  
-            Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);  
-            
             String selectedLabel = navMenuTitles.get(position);
             
             if(selectedLabel.equals("Search"))
@@ -145,7 +210,7 @@ public class MainActivity extends Activity {
             }
             else if(selectedLabel.equals("About"))
             {
-            startActivity(launchBrowser); 
+            	showAbout();
             }
             else
             {
@@ -163,8 +228,10 @@ public class MainActivity extends Activity {
             }
             }
         }
+        
+        
 
-        private void generateSubMenuFor(int categoryId) {
+        public void generateSubMenuFor(int categoryId) {
             List<NavDrawerItem> subNavDrawerItems = createSubMenuDrawer(categoryId);
             
             // setting the Navigation drawer list adapter
@@ -267,13 +334,32 @@ public class MainActivity extends Activity {
  
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // toggle Navigation drawer on selecting action bar app icon/title
+         //toggle Navigation drawer on selecting action bar app icon/title
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
         // Handle action bar actions click
-        switch (item.getItemId()) {
-        case R.id.action_settings:
+    	System.out.println(item.getItemId());
+        
+    	if (item.getItemId() == R.id.action_directory) {
+    	      Toast.makeText(this, "Got your tap", Toast.LENGTH_LONG).show();
+    	      return true;
+    	    }
+    	
+    	
+    	switch (item.getItemId()) {
+        
+        case R.id.action_directory:
+        	System.out.println("directory");
+        	showDoSS();
+            return true;
+        case R.id.action_search:
+        	System.out.println("directory");
+        	showDoSS();
+            return true;
+        case R.id.action_about:
+        	System.out.println("directory");
+        	showDoSS();
             return true;
         default:
             return super.onOptionsItemSelected(item);
@@ -285,22 +371,21 @@ public class MainActivity extends Activity {
      */
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        // if Navigation drawer is opened, hide the action items
-        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
-        menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
         return super.onPrepareOptionsMenu(menu);
     }
     
     private void displaySearch()
     {
-    	Fragment fragment = new SearchFragment(this);
+    	Fragment fragment = new SearchFragment(this, getApplicationContext());
 
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.frame_container, fragment).addToBackStack(null).commit();
 
        // setTitle(navMenuTitles.get(itemId));
+        isMain = false;
         mDrawerLayout.closeDrawer(mDrawerList);
+        
     }
     
    private void displayViewByClass(int itemId) {
@@ -317,8 +402,9 @@ public class MainActivity extends Activity {
            mDrawerList.setItemChecked(itemId, true);
            mDrawerList.setSelection(itemId);
           // setTitle(navMenuTitles.get(itemId));
+           isMain=false;
            mDrawerLayout.closeDrawer(mDrawerList);
-       
+           
 
     }
     
@@ -357,8 +443,22 @@ public class MainActivity extends Activity {
         
     } 
     
-    
-    
-
+    @Override
+    public void onBackPressed()
+    {
+    	if(isMain == true)
+    	{
+    		Intent intent = new Intent(Intent.ACTION_MAIN);
+        	intent.addCategory(Intent.CATEGORY_HOME);
+        	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        	startActivity(intent);
+    	}
+    	else
+    	{
+    		super.onBackPressed();
+    		isMain = true;
+    	}
+    	
+    }
 }
     

@@ -44,6 +44,9 @@ public class SynchronizeActivity extends Activity {
     	if(db.checkDataBase()) {
             if (onComplete != null) {
                 onComplete.run();
+                //LoadContentTask task = new LoadContentTask(this);
+                //task.setOnComplete(onComplete);
+                //task.execute();
             }
         }
         else {
